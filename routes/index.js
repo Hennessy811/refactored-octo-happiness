@@ -167,4 +167,13 @@ router.get("/", function(req, res, next) {
     });
 });
 
+/* GET home page. */
+router.get("/:bird/:flag", function(req, res, next) {
+    const { bird, flag } = req.params;
+
+    res.json({
+        message: `flag ${flag} activated for bird ${bird}`
+    });
+});
+
 module.exports = router;
