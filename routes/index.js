@@ -99,8 +99,9 @@ router.post("/pose", (req, res, next) => {
 router.post("/hit", (req, res, next) => {
     Stats.findOne({ stat_id: STATS_ID }, (err, item) => {
         if (!!item) {
-            console.log(item);
             const { last_hit } = req.body;
+
+            console.log(req.body);
 
             Stats.findOneAndUpdate(
                 { stat_id: STATS_ID },
