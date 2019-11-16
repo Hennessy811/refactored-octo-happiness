@@ -96,7 +96,7 @@ router.post("/pose", (req, res, next) => {
     });
 });
 
-router.post("/hit", (req, res, next) => {
+router.post("/hit/:x/:y", (req, res, next) => {
     Stats.findOne({ stat_id: STATS_ID }, (err, item) => {
         if (!!item) {
             const { last_hit } = req.body;
@@ -105,7 +105,7 @@ router.post("/hit", (req, res, next) => {
 
             Stats.findOneAndUpdate(
                 { stat_id: STATS_ID },
-                { last_hit: { ...last_hit } },
+                { last_hit: { x: req.params.x, y: req.params.y } },
                 (err, r) => {
                     if (!err) {
                         res.json({
