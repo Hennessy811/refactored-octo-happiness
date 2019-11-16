@@ -1,6 +1,9 @@
 var express = require("express");
 var router = express.Router();
 var mongoose = require("mongoose");
+const dotenv = require("dotenv");
+
+dotenv.config();
 
 var kittySchema = new mongoose.Schema({
     name: String
@@ -24,8 +27,8 @@ const statsSchema = new mongoose.Schema({
 var Kitten = mongoose.model("Kitten", kittySchema);
 var Stats = mongoose.model("Stats", statsSchema);
 
-var mongoose = require("mongoose");
-mongoose.connect("mongodb://localhost/test", {
+var mongoose = require("mongoose"); //process.env.MONGODB_URI
+mongoose.connect(process.env.MONGODB_URI, {
     useNewUrlParser: true
 });
 
