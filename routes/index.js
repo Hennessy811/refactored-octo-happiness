@@ -96,7 +96,7 @@ router.post("/pose", (req, res, next) => {
     });
 });
 
-router.get("/hit/:x/:y", (req, res, next) => {
+router.get("/hit/:x/:y/:time", (req, res, next) => {
     Stats.findOne({ stat_id: STATS_ID }, (err, item) => {
         if (!!item) {
             // const { last_hit } = req.body;
@@ -105,7 +105,7 @@ router.get("/hit/:x/:y", (req, res, next) => {
 
             Stats.findOneAndUpdate(
                 { stat_id: STATS_ID },
-                { last_hit: { x: req.params.x, y: req.params.y } },
+                { last_hit: { x: req.params.x, y: req.params.y, time: req.params.time } },
                 (err, r) => {
                     if (!err) {
                         res.json({
@@ -121,7 +121,7 @@ router.get("/hit/:x/:y", (req, res, next) => {
         } else {
             const statUpdate = new Stats({
                 stat_id: STATS_ID,
-                last_hit: { x: req.params.x, y: req.params.y }
+                last_hit: { x: req.params.x, y: req.params.y, time: req.params.time }
             });
 
             statUpdate.save((err, r) => {
