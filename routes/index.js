@@ -6,7 +6,7 @@ const sampleRes = {
     "time": new Date().getTime(),
     "x": 100,
     "y": 120,
-    "strength": 20,
+    "strength": 0.4,
     "id": 21341,
   },
   "last_pose": {
