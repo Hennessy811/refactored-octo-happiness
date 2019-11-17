@@ -62,8 +62,8 @@ router.post("/pose", (req, res, next) => {
           stat_id: STATS_ID
         }, {
           last_pose: {
-            x: last_pose.x,
-            y: last_pose.y,
+            time_start: last_pose.time_start,
+            time_end: last_pose.time_end,
             pose_id: last_pose.pose_id
           }
         },
