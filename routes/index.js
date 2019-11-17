@@ -21,8 +21,8 @@ var Stats = mongoose.model("Stats", statsSchema);
 
 var mongoose = require("mongoose"); // mongodb://localhost/test
 mongoose.connect(
-  "mongodb://localhost/test", //process.env.MONGODB_URI
-  {
+  // "mongodb://localhost/test", 
+  process.env.MONGODB_URI, {
     useNewUrlParser: true
   }
 );
