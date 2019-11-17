@@ -1,7 +1,7 @@
 var express = require("express");
 var router = express.Router();
 
-const sampleRes = {
+let sampleRes = {
     last_hit: {
         time: new Date().getTime(),
         x: 100,
