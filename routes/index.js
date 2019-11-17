@@ -21,8 +21,9 @@ var Stats = mongoose.model("Stats", statsSchema);
 
 var mongoose = require("mongoose"); // mongodb://localhost/test
 mongoose.connect(
-  // "mongodb://localhost/test", 
-  process.env.MONGODB_URI, {
+  "mongodb://localhost/test",
+  // process.env.MONGODB_URI, 
+  {
     useNewUrlParser: true
   }
 );
@@ -70,20 +71,24 @@ router.post("/pose", (req, res, next) => {
         } = last_pose;
 
         let respo = {
-          pose_id
+          pose_id,
+          time_end,
+          time_start
         };
 
-        if (time_end) res.time_end = time_end;
-        if (time_start) res.time_start = time_start;
+        console.log(respo);
+
 
         Stats.findOneAndUpdate({
             stat_id: STATS_ID
           }, {
-            last_pose: respo
+            last_pose: {
+              ...respo
+            }
           },
           (err, r) => {
             if (!err) {
-              console.log(r, last_pose);
+              // console.log(r, last_pose);
               res.json({
                 stats: "updated"
               });
