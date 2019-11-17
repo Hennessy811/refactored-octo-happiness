@@ -64,7 +64,7 @@ router.post("/pose", (req, res, next) => {
 
             Stats.findOneAndUpdate(
                 { stat_id: STATS_ID },
-                { last_pose: { ...last_pose } },
+                { last_pose: { x: last_pose.x, y: last_pose.y, pose_id: last_pose.pose_id } },
                 (err, r) => {
                     if (!err) {
                         console.log(r, last_pose);
@@ -84,7 +84,7 @@ router.post("/pose", (req, res, next) => {
             const statUpdate = new Stats({
                 stat_id: STATS_ID,
                 last_hit: { ...last_hit },
-                last_pose: { ...last_pose }
+                last_pose: { x: last_pose.x, y: last_pose.y, pose_id: last_pose.pose_id }
             });
 
             statUpdate.save((err, r) => {
@@ -99,10 +99,6 @@ router.post("/pose", (req, res, next) => {
 router.get("/hit/:x/:y/:time", (req, res, next) => {
     Stats.findOne({ stat_id: STATS_ID }, (err, item) => {
         if (!!item) {
-            // const { last_hit } = req.body;
-
-            console.log(req.params);
-
             Stats.findOneAndUpdate(
                 { stat_id: STATS_ID },
                 { last_hit: { x: req.params.x, y: req.params.y, time: req.params.time } },
