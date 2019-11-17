@@ -58,13 +58,19 @@ router.post("/pose", (req, res, next) => {
         last_pose
       } = req.body;
 
+      const {
+        time_start,
+        time_end,
+        pose_id
+      } = last_pose;
+
       Stats.findOneAndUpdate({
           stat_id: STATS_ID
         }, {
           last_pose: {
-            time_start: last_pose.time_start,
-            time_end: last_pose.time_end,
-            pose_id: last_pose.pose_id
+            time_start,
+            time_end,
+            pose_id
           }
         },
         (err, r) => {
