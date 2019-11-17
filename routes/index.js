@@ -55,7 +55,6 @@ router.post("/pose", (req, res, next) => {
         },
         (err, item) => {
             if (!!item) {
-                console.log(body);
                 const { last_pose } = JSON.parse(req.body);
 
                 const { time_start, time_end, pose_id } = last_pose;
