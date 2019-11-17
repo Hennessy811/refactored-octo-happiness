@@ -61,7 +61,7 @@ router.post("/pose", (req, res, next) => {
 
         const {
           last_pose
-        } = JSON.parse(req.body);
+        } = req.body;
 
         const {
           time_start,
