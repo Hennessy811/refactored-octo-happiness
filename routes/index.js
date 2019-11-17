@@ -3,8 +3,6 @@ var router = express.Router();
 var mongoose = require("mongoose");
 // const dotenv = require("dotenv");
 
-// dotenv.config();
-
 var kittySchema = new mongoose.Schema({
     name: String
 });
